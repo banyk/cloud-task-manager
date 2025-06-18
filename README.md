@@ -8,7 +8,7 @@
 - AWS EC2
 - GitHub Actions
 
-### 🗓️ Этапы
+### 🗓️ Steps
 - [ ] Flask Hello World 
 - [ ] REST API: CRUD 
 - [ ] Docker containerization
