@@ -1,12 +1,17 @@
 from flask import Flask, request, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
+import time
+import psycopg2
+import os
 
 app = Flask(__name__)
 app.json.ensure_ascii = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/cloud_task_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -83,9 +88,27 @@ def delete_task(task_id):
 def home():
     return "Hello, Banyk!"
 
-if __name__ == '__main__':
-    app.run(debug=True)
+def wait_for_postgres():
+    while True:
+        try:
+            conn = psycopg2.connect(
+                host="db", database="cloud_task_db", user="postgres", password="password"
+            )
+            conn.close()
+            print("Postgres is ready!")
+            break
+        except psycopg2.OperationalError:
+            print("Waiting for Postgres...")
+            time.sleep(1)
+
+wait_for_postgres()
 
 
 with app.app_context():
     db.create_all()
+
+if __name__ == '__main__':
+    app.run(debug=True, host="0.0.0.0")
+
+
+
