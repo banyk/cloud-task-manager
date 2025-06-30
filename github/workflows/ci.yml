@@ -28,6 +28,6 @@ jobs:
 
       - name: Wait for app and check health
         run: |
-          sleep 10  # ждём, пока контейнеры поднимутся
+          sleep 10
           curl --fail http://localhost:5001 || (echo "App did not respond!" && exit 1)
 
