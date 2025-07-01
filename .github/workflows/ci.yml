@@ -24,7 +24,7 @@ jobs:
           echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
 
       - name: Build and run Docker Compose
-        run: docker-compose up --build -d
+        run: docker compose up --build -d
 
       - name: Wait for app and check health
         run: |
