@@ -23,5 +23,14 @@ services:
     environment:
       DATABASE_URL: "postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}"
 
+  web:
+    image: nginx
+    volumes:
+    - ./frontend:/usr/share/nginx/html
+    ports:
+    - "8080:80"
+
+
+
 volumes:
   postgres_data:

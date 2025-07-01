@@ -3,8 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 import time
 import psycopg2
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 app.json.ensure_ascii = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 
