@@ -5,9 +5,7 @@ A simple full-stack task management application built with **Flask**, **PostgreS
 ### 🌐 Live Demo
 
 Access the live version at:  
-👉 [http://<YOUR_EC2_PUBLIC_IP>:8080](http://<YOUR_EC2_PUBLIC_IP>:8080)
-
-> _Note: Replace `<YOUR_EC2_PUBLIC_IP>` with your actual EC2 IP address_
+👉 [http://18.225.235.157:8080](http://18.225.235.157:8080)
 
 ---
 
@@ -23,4 +21,14 @@ Access the live version at:
 ---
 
 ## 📁 Project Structure
-
+cloud-task-manager/
+├── backend/ # Flask app and Dockerfile
+│ ├── app.py
+│ ├── requirements.txt
+│ └── Dockerfile
+├── frontend/ # Static frontend
+│ ├── index.html
+│ └── config.js
+├── .env # Environment variables
+├── docker-compose.yml # Multi-service container config
+└── .github/workflows/ci.yml # GitHub Actions CI workflow
